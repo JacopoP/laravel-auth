@@ -22,6 +22,9 @@ Route::middleware(['auth', 'verified'])
 
          Route::get('/project/edit/{project}', [MainController :: class, 'goUpdate'])
          ->name('project.edit');
+
+         Route::post('/project/store', [MainController :: class, 'store'])
+         ->name('project.store');
    });
 
 

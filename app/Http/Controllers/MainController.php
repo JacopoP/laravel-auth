@@ -32,4 +32,20 @@ class MainController extends Controller
         $projects = Project::all();
         return view('pages.create', compact('projects'));
     }
+
+    public function store(Request $request){
+        $data=$request->validate([
+            'name'=> 'required|string|max:64',
+            'description'=> 'string|max:300',
+            'main_image'=> 'required|string|max:250',
+            'release_date'=> 'date|required|before:today',
+            'repo_link'=> 'string|required|max:250',
+        ]);
+
+        $project = Project::make($data);
+
+        $project->save();
+
+        return redirect()->route('admin.editor');
+    }
 }
