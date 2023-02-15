@@ -1,7 +1,7 @@
 @extends('layouts.main_layout')
 
 @section('content')
-<form action="{{route('admin.project.save', $project)}}" method="POST">
+<form action="{{route('admin.project.save', $project)}}" method="POST" enctype="multipart/form-data">
     @csrf
     <label class="label-control" for="name">Name</label>
     <input type="text" class="form-control" name="name" value="{{$project->name}}">
@@ -10,7 +10,7 @@
     <textarea name="description" class="form-control" cols="30" rows="10" value="{{$project->description}}"></textarea>
 
     <label class="label-control" for="main_image">Image</label>
-    <input type="text" class="form-control" name="main_image" value="{{$project->main_image}}">
+    <input type="file" class="form-control" name="main_image" value="{{$project->main_image}}">
 
     <label class="label-control" for="release_date">Release date</label>
     <input type="date" class="form-control" name="release_date" value="{{$project->release_date}}">
