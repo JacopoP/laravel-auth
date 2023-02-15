@@ -9,6 +9,7 @@
     @vite(['resources/js/app.js'])
 </head>
 <body>
+    @include('components.errors')
     @include('components.header')
     @yield('content')
 </body>
