@@ -11,8 +11,17 @@ Route::middleware(['auth', 'verified'])
    ->name('admin.')
    ->prefix('private')
    ->group(function () {
-         Route::get('/', [MainController :: class, 'logged'])
-         ->name('private');
+         Route::get('/editor', [MainController :: class, 'goEdit'])
+         ->name('editor');
+
+         Route::get('/project/delete/{project}', [MainController :: class, 'goDelete'])
+         ->name('project.delete');
+
+         Route::get('/project/create', [MainController :: class, 'goCreate'])
+         ->name('project.create');
+
+         Route::get('/project/edit/{project}', [MainController :: class, 'goUpdate'])
+         ->name('project.edit');
    });
 
 

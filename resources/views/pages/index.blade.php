@@ -1,6 +1,9 @@
 @extends('layouts.main_layout')
 
 @section('content')
+    @auth
+        <a class="px-5" href="{{route('admin.editor')}}">Go to editor</a>
+    @endauth
     @foreach ($projects as $project)
         <section class="px-5">
             <h2>{{$project->name}}</h2>
