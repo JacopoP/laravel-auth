@@ -25,6 +25,9 @@ Route::middleware(['auth', 'verified'])
 
          Route::post('/project/store', [MainController :: class, 'store'])
          ->name('project.store');
+
+         Route::post('/project/save/{project}', [MainController :: class, 'save'])
+         ->name('project.save');
    });
 
 

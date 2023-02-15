@@ -18,9 +18,8 @@ class MainController extends Controller
         return view('pages.editor', compact('projects'));
     }
 
-    public function goUpdate(){
-        $projects = Project::all();
-        return view('pages.update', compact('projects'));
+    public function goUpdate(Project $project){
+        return view('pages.update', compact('project'));
     }
 
     public function goDelete(Project $project){
@@ -29,8 +28,7 @@ class MainController extends Controller
     }
 
     public function goCreate(){
-        $projects = Project::all();
-        return view('pages.create', compact('projects'));
+        return view('pages.create');
     }
 
     public function store(Request $request){
@@ -46,6 +44,22 @@ class MainController extends Controller
 
         $project->save();
 
+        return redirect()->route('admin.editor');
+    }
+
+    public function save(Request $request, Project $project){
+        $data=$request->validate([
+            'name'=> 'required|string|max:64',
+            'description'=> 'string|max:300',
+            'main_image'=> 'required|string|max:250',
+            'release_date'=> 'date|required|before:today',
+            'repo_link'=> 'string|required|max:250',
+        ]);
+
+        $project->update($data);
+
+        $project->save();
+        
         return redirect()->route('admin.editor');
     }
 }
